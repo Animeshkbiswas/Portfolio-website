@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Code, Database, Server, Layers, Cpu, Globe, Brain, Palette } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
+import { Code, Database, Server, Layers, Cpu, Globe, Brain } from 'lucide-react';
 
 interface SkillNode {
   id: string;
@@ -17,9 +17,11 @@ const SkillTree = () => {
   const [selectedNode, setSelectedNode] = useState<string | null>(null);
   const [draggedNode, setDraggedNode] = useState<string | null>(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
   const svgRef = useRef<SVGSVGElement>(null);
+  const animationFrame = useRef<number>();
 
-  const skillNodes: SkillNode[] = [
+  const initialNodes: SkillNode[] = useMemo(() => [
     // Core Programming
     { id: 'python', name: 'Python', level: 5, category: 'languages', x: 200, y: 100, icon: <Code className="h-4 w-4" />, connections: ['tensorflow', 'flask', 'opencv'], description: 'Advanced Python programming with 3+ years experience' },
     { id: 'javascript', name: 'JavaScript', level: 4, category: 'languages', x: 400, y: 100, icon: <Code className="h-4 w-4" />, connections: ['react', 'nodejs'], description: 'Modern ES6+ JavaScript and TypeScript' },
@@ -46,7 +48,9 @@ const SkillTree = () => {
     { id: 'git', name: 'Git', level: 4, category: 'tools', x: 150, y: 450, icon: <Layers className="h-4 w-4" />, connections: ['github'], description: 'Version control and collaboration' },
     { id: 'github', name: 'GitHub', level: 4, category: 'tools', x: 250, y: 500, icon: <Layers className="h-4 w-4" />, connections: ['git'], description: 'Code hosting and CI/CD' },
     { id: 'docker', name: 'Docker', level: 2, category: 'tools', x: 350, y: 500, icon: <Layers className="h-4 w-4" />, connections: [], description: 'Containerization and deployment' },
-  ];
+  ], []);
+
+  const [nodes, setNodes] = useState(initialNodes);
 
   const categoryColors = {
     languages: '#3B82F6',
@@ -56,16 +60,21 @@ const SkillTree = () => {
     tools: '#EF4444'
   };
 
-  const getNodeRadius = (level: number) => 15 + (level * 3);
+  const getNodeRadius = useCallback((level: number) => 15 + (level * 3), []);
 
-  const handleNodeClick = (nodeId: string) => {
-    setSelectedNode(selectedNode === nodeId ? null : nodeId);
-  };
+  const handleNodeClick = useCallback((nodeId: string) => {
+    if (!isDragging) {
+      setSelectedNode(prev => prev === nodeId ? null : nodeId);
+    }
+  }, [isDragging]);
 
-  const handleMouseDown = (e: React.MouseEvent, nodeId: string) => {
+  const handleMouseDown = useCallback((e: React.MouseEvent, nodeId: string) => {
     e.preventDefault();
+    e.stopPropagation();
     setDraggedNode(nodeId);
-    const node = skillNodes.find(n => n.id === nodeId);
+    setIsDragging(false);
+    
+    const node = nodes.find(n => n.id === nodeId);
     if (node && svgRef.current) {
       const rect = svgRef.current.getBoundingClientRect();
       setDragOffset({
@@ -73,40 +82,85 @@ const SkillTree = () => {
         y: e.clientY - rect.top - node.y
       });
     }
-  };
-
-  const [nodes, setNodes] = useState(skillNodes);
+  }, [nodes]);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (draggedNode && svgRef.current) {
-        const rect = svgRef.current.getBoundingClientRect();
-        setNodes(prevNodes => 
-          prevNodes.map(node => 
-            node.id === draggedNode 
-              ? { ...node, x: e.clientX - rect.left - dragOffset.x, y: e.clientY - rect.top - dragOffset.y }
-              : node
-          )
-        );
+        setIsDragging(true);
+        
+        if (animationFrame.current) {
+          cancelAnimationFrame(animationFrame.current);
+        }
+        
+        animationFrame.current = requestAnimationFrame(() => {
+          const rect = svgRef.current!.getBoundingClientRect();
+          const newX = e.clientX - rect.left - dragOffset.x;
+          const newY = e.clientY - rect.top - dragOffset.y;
+          
+          const constrainedX = Math.max(30, Math.min(620, newX));
+          const constrainedY = Math.max(30, Math.min(520, newY));
+          
+          setNodes(prevNodes => 
+            prevNodes.map(node => 
+              node.id === draggedNode 
+                ? { ...node, x: constrainedX, y: constrainedY }
+                : node
+            )
+          );
+        });
       }
     };
 
     const handleMouseUp = () => {
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
+      }
       setDraggedNode(null);
+      setTimeout(() => setIsDragging(false), 100);
     };
 
     if (draggedNode) {
-      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mousemove', handleMouseMove, { passive: true });
       document.addEventListener('mouseup', handleMouseUp);
     }
 
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      if (animationFrame.current) {
+        cancelAnimationFrame(animationFrame.current);
+      }
     };
   }, [draggedNode, dragOffset]);
 
-  const selectedNodeData = selectedNode ? nodes.find(n => n.id === selectedNode) : null;
+  const selectedNodeData = useMemo(() => 
+    selectedNode ? nodes.find(n => n.id === selectedNode) : null, 
+    [selectedNode, nodes]
+  );
+
+  const connectionLines = useMemo(() => {
+    return nodes.flatMap(node => 
+      node.connections.map(connectionId => {
+        const connectedNode = nodes.find(n => n.id === connectionId);
+        if (!connectedNode) return null;
+        
+        return (
+          <line
+            key={`${node.id}-${connectionId}`}
+            x1={node.x}
+            y1={node.y}
+            x2={connectedNode.x}
+            y2={connectedNode.y}
+            stroke="hsl(var(--muted-foreground))"
+            strokeWidth="2"
+            strokeOpacity="0.3"
+            className="transition-opacity duration-200"
+          />
+        );
+      }).filter(Boolean)
+    );
+  }, [nodes]);
 
   return (
     <div className="w-full bg-card rounded-lg border p-6">
@@ -118,29 +172,8 @@ const SkillTree = () => {
           viewBox="0 0 650 550"
           className="border rounded-lg bg-gradient-to-br from-background to-muted/20"
         >
-          {/* Connection lines */}
-          {nodes.map(node => 
-            node.connections.map(connectionId => {
-              const connectedNode = nodes.find(n => n.id === connectionId);
-              if (!connectedNode) return null;
-              
-              return (
-                <line
-                  key={`${node.id}-${connectionId}`}
-                  x1={node.x}
-                  y1={node.y}
-                  x2={connectedNode.x}
-                  y2={connectedNode.y}
-                  stroke="hsl(var(--muted-foreground))"
-                  strokeWidth="2"
-                  strokeOpacity="0.3"
-                  className="transition-all duration-300"
-                />
-              );
-            })
-          )}
+          {connectionLines}
           
-          {/* Skill nodes */}
           {nodes.map(node => (
             <g key={node.id}>
               <circle
@@ -150,15 +183,18 @@ const SkillTree = () => {
                 fill={categoryColors[node.category as keyof typeof categoryColors]}
                 stroke={selectedNode === node.id ? 'hsl(var(--ring))' : 'transparent'}
                 strokeWidth="3"
-                className={`cursor-pointer transition-all duration-300 hover:scale-110 ${
+                className={`cursor-pointer transition-transform duration-200 hover:scale-110 ${
                   selectedNode === node.id ? 'drop-shadow-lg' : ''
-                }`}
+                } ${draggedNode === node.id ? 'scale-110' : ''}`}
                 onClick={() => handleNodeClick(node.id)}
                 onMouseDown={(e) => handleMouseDown(e, node.id)}
                 opacity={selectedNode && selectedNode !== node.id ? 0.6 : 1}
+                style={{ 
+                  cursor: draggedNode === node.id ? 'grabbing' : 'grab',
+                  willChange: draggedNode === node.id ? 'transform' : 'auto'
+                }}
               />
               
-              {/* Skill level indicator */}
               <circle
                 cx={node.x}
                 cy={node.y}
@@ -167,7 +203,6 @@ const SkillTree = () => {
                 className="pointer-events-none"
               />
               
-              {/* Node label */}
               <text
                 x={node.x}
                 y={node.y + getNodeRadius(node.level) + 15}
@@ -177,7 +212,6 @@ const SkillTree = () => {
                 {node.name}
               </text>
               
-              {/* Level indicator */}
               <text
                 x={node.x}
                 y={node.y + 4}
@@ -190,7 +224,6 @@ const SkillTree = () => {
           ))}
         </svg>
         
-        {/* Legend */}
         <div className="absolute top-4 right-4 bg-background/90 backdrop-blur-sm border rounded-lg p-3 space-y-2">
           <div className="text-sm font-semibold">Categories</div>
           {Object.entries(categoryColors).map(([category, color]) => (
@@ -205,7 +238,6 @@ const SkillTree = () => {
         </div>
       </div>
       
-      {/* Selected node details */}
       {selectedNodeData && (
         <div className="mt-6 p-4 bg-muted/50 rounded-lg border">
           <div className="flex items-center gap-3 mb-2">
