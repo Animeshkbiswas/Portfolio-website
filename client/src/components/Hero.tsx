@@ -84,13 +84,17 @@ const Hero = () => {
               </div>
             </div>
             
-            <p className="text-lg max-w-2xl text-muted-foreground leading-relaxed animate-fadeIn delay-300">
-              Passionate about transforming ideas into intelligent solutions through 
-              <span className="text-primary font-semibold"> machine learning</span>, 
-              <span className="text-secondary font-semibold"> computer vision</span>, and 
-              <span className="text-accent font-semibold"> full-stack development</span>. 
-              Currently researching time series classification at NIT Rourkela.
-            </p>
+            <div className="space-y-4">
+              <p className="text-xl max-w-2xl text-muted-foreground leading-relaxed animate-fadeIn delay-300">
+                Passionate about transforming ideas into intelligent solutions through 
+                <span className="text-primary font-semibold bg-primary/10 px-2 py-1 rounded-md"> machine learning</span>, 
+                <span className="text-secondary font-semibold bg-secondary/10 px-2 py-1 rounded-md"> computer vision</span>, and 
+                <span className="text-accent font-semibold bg-accent/10 px-2 py-1 rounded-md"> full-stack development</span>.
+              </p>
+              <p className="text-lg text-muted-foreground animate-fadeIn delay-400">
+                Currently researching <span className="font-semibold text-foreground">time series classification</span> at <span className="font-semibold text-primary">NIT Rourkela</span>.
+              </p>
+            </div>
             
             {/* CTA Buttons */}
             <div className="flex flex-wrap gap-4 pt-4 animate-fadeIn delay-400">

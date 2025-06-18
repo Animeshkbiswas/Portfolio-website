@@ -75,15 +75,19 @@ const SkillTree = () => {
     }
   };
 
+  const [nodes, setNodes] = useState(skillNodes);
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (draggedNode && svgRef.current) {
         const rect = svgRef.current.getBoundingClientRect();
-        const nodeIndex = skillNodes.findIndex(n => n.id === draggedNode);
-        if (nodeIndex !== -1) {
-          skillNodes[nodeIndex].x = e.clientX - rect.left - dragOffset.x;
-          skillNodes[nodeIndex].y = e.clientY - rect.top - dragOffset.y;
-        }
+        setNodes(prevNodes => 
+          prevNodes.map(node => 
+            node.id === draggedNode 
+              ? { ...node, x: e.clientX - rect.left - dragOffset.x, y: e.clientY - rect.top - dragOffset.y }
+              : node
+          )
+        );
       }
     };
 
@@ -102,7 +106,7 @@ const SkillTree = () => {
     };
   }, [draggedNode, dragOffset]);
 
-  const selectedNodeData = selectedNode ? skillNodes.find(n => n.id === selectedNode) : null;
+  const selectedNodeData = selectedNode ? nodes.find(n => n.id === selectedNode) : null;
 
   return (
     <div className="w-full bg-card rounded-lg border p-6">
@@ -115,9 +119,9 @@ const SkillTree = () => {
           className="border rounded-lg bg-gradient-to-br from-background to-muted/20"
         >
           {/* Connection lines */}
-          {skillNodes.map(node => 
+          {nodes.map(node => 
             node.connections.map(connectionId => {
-              const connectedNode = skillNodes.find(n => n.id === connectionId);
+              const connectedNode = nodes.find(n => n.id === connectionId);
               if (!connectedNode) return null;
               
               return (
@@ -137,7 +141,7 @@ const SkillTree = () => {
           )}
           
           {/* Skill nodes */}
-          {skillNodes.map(node => (
+          {nodes.map(node => (
             <g key={node.id}>
               <circle
                 cx={node.x}
@@ -230,7 +234,7 @@ const SkillTree = () => {
               <div className="text-sm font-medium mb-1">Connected Skills:</div>
               <div className="flex flex-wrap gap-1">
                 {selectedNodeData.connections.map(connectionId => {
-                  const connectedSkill = skillNodes.find(n => n.id === connectionId);
+                  const connectedSkill = nodes.find(n => n.id === connectionId);
                   return connectedSkill ? (
                     <span 
                       key={connectionId}
