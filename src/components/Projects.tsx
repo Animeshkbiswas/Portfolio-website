@@ -13,7 +13,7 @@ const Projects = () => {
         "Achieved 98% train accuracy and 92% validation accuracy, integrating the solution into a user-facing application for feedback and enhanced learning analytics."
       ],
       technologies: ["Python", "PyTorch", "OpenCV", "Hugging Face"],
-      github: "https://github.com/Animeshkbiswas/Emotion-Recognition",
+      github: "https://github.com/Animeshkbiswas/Emotion_detector",
       liveLink: "",
     },
     {

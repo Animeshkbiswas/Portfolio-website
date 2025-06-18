@@ -6,7 +6,7 @@ const Experience = () => {
   const experiences = [
     {
       title: "Machine Learning Research Intern",
-      company: "IIT Rourkela",
+      company: "NIT Rourkela",
       location: "Rourkela, Odisha",
       period: "May 2025 - Present",
       description: [

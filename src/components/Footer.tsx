@@ -52,7 +52,7 @@ const Footer = () => {
               GitHub
             </a>
             <a
-              href="https://linkedin.com/in/animesh"
+              href="https://www.linkedin.com/in/animesh-kumar-biswas-584085280/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-secondary-foreground hover:text-primary transition-colors"
@@ -60,7 +60,7 @@ const Footer = () => {
               LinkedIn
             </a>
             <a
-              href="mailto:animeshkbiswas15122003@gmail.com"
+              href="mailto:animeshkbiswas15122004@gmail.com"
               className="text-secondary-foreground hover:text-primary transition-colors"
             >
               Email

@@ -60,8 +60,8 @@ const Contact = () => {
                 </div>
                 <div>
                   <p className="text-sm text-muted-foreground">Email</p>
-                  <a href="mailto:animeshkbiswas15122003@gmail.com" className="font-medium hover:text-primary">
-                    animeshkbiswas15122003@gmail.com
+                  <a href="mailto:animeshkbiswas15122004@gmail.com" className="font-medium hover:text-primary">
+                    animeshkbiswas15122004@gmail.com
                   </a>
                 </div>
               </div>
@@ -104,7 +104,7 @@ const Contact = () => {
                   </svg>
                 </a>
                 <a 
-                  href="https://linkedin.com/in/animesh" 
+                  href="https://www.linkedin.com/in/animesh-kumar-biswas-584085280/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-muted hover:bg-primary/10 p-3 rounded-full transition-colors"
@@ -117,7 +117,7 @@ const Contact = () => {
                   </svg>
                 </a>
                 <a 
-                  href="https://twitter.com/animesh" 
+                  href="https://x.com/Animesh151" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="bg-muted hover:bg-primary/10 p-3 rounded-full transition-colors"

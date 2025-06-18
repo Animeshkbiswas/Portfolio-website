@@ -14,7 +14,7 @@ const About = () => {
               with a passion for machine learning, computer vision, and full-stack development.
             </p>
             <p>
-              Currently, I'm working as a <span className="font-semibold">Machine Learning Research Intern</span> at IIT Rourkela,
+              Currently, I'm working as a <span className="font-semibold">Machine Learning Research Intern</span> at NIT Rourkela,
               where I'm focused on time series data classification using advanced techniques, and leveraging Vision Transformers (ViT) for
               image classification.
             </p>
