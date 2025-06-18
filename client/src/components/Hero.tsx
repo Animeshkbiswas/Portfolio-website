@@ -178,13 +178,20 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Scroll Indicator - Centered and properly positioned */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce animate-fadeIn delay-700">
-          <p className="text-sm text-muted-foreground mb-3">Discover More</p>
-          <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center bg-background/50 backdrop-blur-sm">
-            <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
+        {/* Achievement Highlights */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-6 animate-fadeIn delay-700">
+          <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-lg px-4 py-2 text-center">
+            <div className="text-lg font-bold text-primary">3+</div>
+            <div className="text-xs text-muted-foreground">Years Experience</div>
           </div>
-          <ArrowDown size={16} className="text-primary mt-2 animate-bounce" />
+          <div className="bg-secondary/10 backdrop-blur-sm border border-secondary/20 rounded-lg px-4 py-2 text-center">
+            <div className="text-lg font-bold text-secondary">15+</div>
+            <div className="text-xs text-muted-foreground">Projects Built</div>
+          </div>
+          <div className="bg-accent/10 backdrop-blur-sm border border-accent/20 rounded-lg px-4 py-2 text-center">
+            <div className="text-lg font-bold text-accent">ML</div>
+            <div className="text-xs text-muted-foreground">Research Focus</div>
+          </div>
         </div>
       </div>
     </section>
