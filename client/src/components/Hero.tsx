@@ -138,29 +138,42 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Profile & 3D Section */}
-          <div className="flex flex-col items-center gap-8 animate-slideInRight">
-            {/* Enhanced Profile Photo */}
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden bg-gradient-to-br from-primary/20 to-secondary/20 backdrop-blur-sm border-2 border-white/20">
-                <img 
-                  src="/lovable-uploads/20281ccd-415d-4182-9ece-17e6eb28ad99.png" 
-                  alt="Animesh Kumar Biswas - ML Engineer & Developer"
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          {/* Enhanced Visual Section */}
+          <div className="relative flex justify-center lg:justify-end animate-slideInRight">
+            <div className="relative w-full max-w-lg">
+              {/* Profile Card */}
+              <div className="bg-gradient-to-br from-card via-card/90 to-card/70 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-xl">
+                {/* Profile Image Placeholder */}
+                <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 border-4 border-white/20 shadow-lg flex items-center justify-center">
+                  <div className="text-6xl font-bold text-primary">AB</div>
+                </div>
+                
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-4 mb-6">
+                  <div className="text-center p-4 bg-primary/5 rounded-lg border border-primary/20">
+                    <div className="text-2xl font-bold text-primary">15+</div>
+                    <div className="text-sm text-muted-foreground">Projects</div>
+                  </div>
+                  <div className="text-center p-4 bg-secondary/5 rounded-lg border border-secondary/20">
+                    <div className="text-2xl font-bold text-secondary">3+</div>
+                    <div className="text-sm text-muted-foreground">Years Coding</div>
+                  </div>
+                </div>
+                
+                {/* Current Status */}
+                <div className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/20 rounded-lg p-4 mb-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span className="text-sm font-medium text-green-700 dark:text-green-400">Currently Available</span>
+                  </div>
+                  <p className="text-sm text-muted-foreground">Open to new opportunities and collaborations</p>
+                </div>
               </div>
-            </div>
-            
-            {/* 3D Interactive Section */}
-            <div className="w-full max-w-md">
-              <div className="glass-card rounded-xl p-2">
-                <Hero3D />
-              </div>
-              <p className="text-center text-sm text-muted-foreground mt-2">
-                Interactive 3D visualization - drag to explore!
-              </p>
+              
+              {/* Decorative elements */}
+              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-primary/30 to-transparent rounded-full blur-xl animate-pulse"></div>
+              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-tr from-secondary/30 to-transparent rounded-full blur-xl animate-pulse delay-300"></div>
+              <div className="absolute top-1/2 -left-8 w-16 h-16 bg-accent/20 rounded-full blur-lg animate-float"></div>
             </div>
           </div>
         </div>
