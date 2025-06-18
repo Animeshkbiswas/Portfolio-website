@@ -17,7 +17,7 @@ const Hero = () => {
             </h2>
             <p className="text-lg max-w-2xl">
               Specialized in machine learning, computer vision, and web development. 
-              Currently working on time series classification and deep learning projects at NIT Roorkela.
+              Currently working on time series classification and deep learning projects at NIT Rourkela.
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Button asChild size="lg">
