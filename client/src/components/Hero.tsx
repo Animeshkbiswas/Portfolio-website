@@ -87,9 +87,9 @@ const Hero = () => {
             <div className="space-y-4">
               <p className="text-xl max-w-2xl text-muted-foreground leading-relaxed animate-fadeIn delay-300">
                 Passionate about transforming ideas into intelligent solutions through 
-                <span className="text-primary font-semibold bg-primary/10 px-2 py-1 rounded-md"> machine learning</span>, 
-                <span className="text-secondary font-semibold bg-secondary/10 px-2 py-1 rounded-md"> computer vision</span>, and 
-                <span className="text-accent font-semibold bg-accent/10 px-2 py-1 rounded-md"> full-stack development</span>.
+                <span className="text-primary font-semibold bg-primary/10 px-2 py-1 rounded-md mx-1"> machine learning</span>, 
+                <span className="text-primary font-semibold bg-primary/10 px-2 py-1 rounded-md mx-1"> computer vision</span>, and 
+                <span className="text-primary font-semibold bg-primary/10 px-2 py-1 rounded-md mx-1"> full-stack development</span>.
               </p>
               <p className="text-lg text-muted-foreground animate-fadeIn delay-400">
                 Currently researching <span className="font-semibold text-foreground">time series classification</span> at <span className="font-semibold text-primary">NIT Rourkela</span>.
@@ -178,13 +178,13 @@ const Hero = () => {
           </div>
         </div>
         
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center animate-bounce animate-fadeIn delay-700">
-          <p className="text-sm text-muted-foreground mb-2">Discover More</p>
-          <div className="w-6 h-10 border-2 border-muted-foreground rounded-full flex justify-center">
+        {/* Scroll Indicator - Centered and properly positioned */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center animate-bounce animate-fadeIn delay-700">
+          <p className="text-sm text-muted-foreground mb-3">Discover More</p>
+          <div className="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center bg-background/50 backdrop-blur-sm">
             <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-pulse"></div>
           </div>
-          <ArrowDown size={16} className="text-primary mt-2" />
+          <ArrowDown size={16} className="text-primary mt-2 animate-bounce" />
         </div>
       </div>
     </section>
