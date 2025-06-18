@@ -1,11 +1,16 @@
 
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import Hero3D from './Hero3D';
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center pt-16">
-      <div className="section-container">
+    <section id="home" className="min-h-screen flex items-center justify-center pt-16 relative overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10 animate-gradient-x"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(59,130,246,0.1),transparent_50%)] animate-pulse"></div>
+      
+      <div className="section-container relative z-10">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="md:w-3/5 space-y-6 animate-fadeIn">
             <p className="text-primary font-medium">Hi, my name is</p>
@@ -38,7 +43,7 @@ const Hero = () => {
                 <Github size={20} />
               </a>
               <a 
-                href="hhttps://www.linkedin.com/in/animesh-kumar-biswas-584085280/" 
+                href="https://www.linkedin.com/in/animesh-kumar-biswas-584085280/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-muted-foreground hover:text-foreground transition-colors"
@@ -56,13 +61,18 @@ const Hero = () => {
             </div>
           </div>
           
-          <div className="md:w-2/5 flex justify-center animate-fadeIn delay-200">
+          <div className="md:w-2/5 flex flex-col items-center gap-6 animate-fadeIn delay-200">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-lg border-4 border-primary/20">
               <img 
                 src="/lovable-uploads/20281ccd-415d-4182-9ece-17e6eb28ad99.png" 
                 alt="Animesh Kumar Biswas"
                 className="w-full h-full object-cover"
               />
+            </div>
+            
+            {/* 3D Interactive Section */}
+            <div className="w-full max-w-md">
+              <Hero3D />
             </div>
           </div>
         </div>

@@ -7,10 +7,12 @@ import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import AccessibilityControls from '@/components/AccessibilityControls';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
+      <AccessibilityControls />
       <Navbar />
       <Hero />
       <About />
