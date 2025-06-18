@@ -24,7 +24,7 @@ const Experience = () => {
         "Collaborated with cross-functional teams to develop a user-friendly web solution for Indian Railways, streamlining payment calculations and automating real-time monitoring of power regulation and equipment performance, leading to reduced processing time, improved efficiency, and cost savings."
       ],
       skills: ["Web Development", "JavaScript", "Python", "Data Analysis"]
-    } // Uncomment and add more experiences as needed
+    } 
   ];
 
   return (
