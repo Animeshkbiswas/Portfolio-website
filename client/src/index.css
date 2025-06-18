@@ -98,7 +98,7 @@
   }
   
   .project-card {
-    @apply border border-border rounded-lg overflow-hidden bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1 group;
+    @apply border border-border rounded-lg overflow-hidden bg-card transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
   }
   
   .skill-badge {

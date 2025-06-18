@@ -63,25 +63,16 @@ const Scene = () => {
 };
 
 const Hero3D = () => {
-  const [hasError, setHasError] = useState(false);
-
-  if (hasError) {
-    return (
-      <div className="w-full h-96 flex items-center justify-center bg-muted rounded-lg">
-        <div className="text-center">
-          <div className="text-muted-foreground mb-2">3D Scene Unavailable</div>
-          <button 
-            onClick={() => setHasError(false)}
-            className="text-sm text-primary hover:underline"
-          >
-            Try Again
-          </button>
-        </div>
-      </div>
-    );
-  }
-
+  // Temporarily disable 3D functionality for stability
   return (
+    <div className="w-full h-96 flex items-center justify-center bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg">
+      <div className="text-center">
+        <div className="text-4xl font-bold text-primary mb-4">Portfolio</div>
+        <div className="text-muted-foreground">Modern Portfolio Website</div>
+      </div>
+    </div>
+  );
+};
     <div className="w-full h-96 relative">
       <Canvas
         camera={{ position: [0, 0, 5], fov: 75 }}
