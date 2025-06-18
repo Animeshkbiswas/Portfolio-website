@@ -6,6 +6,7 @@ import { VercelRequest, VercelResponse } from "@vercel/node";
 
 const app = express();
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
 
 // Logging Middleware
