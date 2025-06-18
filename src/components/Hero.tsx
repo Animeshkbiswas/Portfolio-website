@@ -57,14 +57,12 @@ const Hero = () => {
           </div>
           
           <div className="md:w-2/5 flex justify-center animate-fadeIn delay-200">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-gradient-to-tr from-primary to-secondary/30 flex items-center justify-center shadow-lg">
-              <div className="w-60 h-60 md:w-76 md:h-76 rounded-full bg-background flex items-center justify-center text-center text-xl font-bold">
-                <div className="p-6">
-                  <span className="text-primary">ML Researcher</span>
-                  <span className="block my-3">&</span>
-                  <span className="text-secondary">Software Developer</span>
-                </div>
-              </div>
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-lg border-4 border-primary/20">
+              <img 
+                src="/lovable-uploads/20281ccd-415d-4182-9ece-17e6eb28ad99.png" 
+                alt="Animesh Kumar Biswas"
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
