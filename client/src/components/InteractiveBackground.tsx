@@ -33,8 +33,8 @@ const InteractiveBackground = () => {
       particlesRef.current.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
+        vx: (Math.random() - 0.5) * 0.1,
+        vy: (Math.random() - 0.5) * 0.1,
         size: Math.random() * 2 + 1,
         opacity: Math.random() * 0.5 + 0.1,
         hue: Math.random() * 60 + 200, // Blue to purple range
@@ -98,8 +98,8 @@ const InteractiveBackground = () => {
           const angle = Math.atan2(dy, dx);
           
           // Attract particles to mouse
-          particle.vx += Math.cos(angle) * force * 0.02;
-          particle.vy += Math.sin(angle) * force * 0.02;
+          particle.vx += Math.cos(angle) * force * 0.005;
+          particle.vy += Math.sin(angle) * force * 0.005;
           
           // Increase opacity and size near mouse
           particle.opacity = Math.min(0.8, particle.opacity + force * 0.01);
@@ -109,8 +109,8 @@ const InteractiveBackground = () => {
         // Return to normal state
         particle.opacity = Math.max(0.1, particle.opacity - 0.005);
         particle.size = Math.max(1, particle.size - 0.02);
-        particle.vx *= 0.98;
-        particle.vy *= 0.98;
+        particle.vx *= 0.995;
+        particle.vy *= 0.995;
       }
 
       // Draw particle

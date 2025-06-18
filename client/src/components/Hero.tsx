@@ -142,21 +142,21 @@ const Hero = () => {
           <div className="relative flex justify-center lg:justify-end animate-slideInRight">
             <div className="relative w-full max-w-lg">
               {/* Profile Card */}
-              <div className="bg-gradient-to-br from-card via-card/90 to-card/70 backdrop-blur-sm border border-border/50 rounded-2xl p-8 shadow-xl">
+              <div className="bg-gradient-to-br from-card via-card/90 to-card/70 backdrop-blur-sm border border-border/50 rounded-2xl p-6 shadow-xl">
                 {/* Profile Image Placeholder */}
-                <div className="w-48 h-48 mx-auto mb-6 rounded-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 border-4 border-white/20 shadow-lg flex items-center justify-center">
-                  <div className="text-6xl font-bold text-primary">AB</div>
+                <div className="w-40 h-40 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary/20 via-secondary/20 to-accent/20 border-4 border-white/20 shadow-lg flex items-center justify-center">
+                  <div className="text-4xl font-bold text-primary">AB</div>
                 </div>
                 
                 {/* Quick Stats */}
-                <div className="grid grid-cols-2 gap-4 mb-6">
-                  <div className="text-center p-4 bg-primary/5 rounded-lg border border-primary/20">
-                    <div className="text-2xl font-bold text-primary">15+</div>
-                    <div className="text-sm text-muted-foreground">Projects</div>
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  <div className="text-center p-3 bg-primary/5 rounded-lg border border-primary/20">
+                    <div className="text-xl font-bold text-primary">15+</div>
+                    <div className="text-xs text-muted-foreground">Projects</div>
                   </div>
-                  <div className="text-center p-4 bg-secondary/5 rounded-lg border border-secondary/20">
-                    <div className="text-2xl font-bold text-secondary">3+</div>
-                    <div className="text-sm text-muted-foreground">Years Coding</div>
+                  <div className="text-center p-3 bg-secondary/5 rounded-lg border border-secondary/20">
+                    <div className="text-xl font-bold text-secondary">3+</div>
+                    <div className="text-xs text-muted-foreground">Years Coding</div>
                   </div>
                 </div>
                 
@@ -179,18 +179,18 @@ const Hero = () => {
         </div>
         
         {/* Achievement Highlights */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-6 animate-fadeIn delay-700">
-          <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-lg px-4 py-2 text-center">
+        <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 flex flex-wrap justify-center gap-4 md:gap-6 animate-fadeIn delay-700 max-w-md">
+          <div className="bg-primary/10 backdrop-blur-sm border border-primary/20 rounded-lg px-3 py-2 text-center min-w-[100px]">
             <div className="text-lg font-bold text-primary">3+</div>
-            <div className="text-xs text-muted-foreground">Years Experience</div>
+            <div className="text-xs text-muted-foreground whitespace-nowrap">Years Experience</div>
           </div>
-          <div className="bg-secondary/10 backdrop-blur-sm border border-secondary/20 rounded-lg px-4 py-2 text-center">
+          <div className="bg-secondary/10 backdrop-blur-sm border border-secondary/20 rounded-lg px-3 py-2 text-center min-w-[100px]">
             <div className="text-lg font-bold text-secondary">15+</div>
-            <div className="text-xs text-muted-foreground">Projects Built</div>
+            <div className="text-xs text-muted-foreground whitespace-nowrap">Projects Built</div>
           </div>
-          <div className="bg-accent/10 backdrop-blur-sm border border-accent/20 rounded-lg px-4 py-2 text-center">
+          <div className="bg-accent/10 backdrop-blur-sm border border-accent/20 rounded-lg px-3 py-2 text-center min-w-[100px]">
             <div className="text-lg font-bold text-accent">ML</div>
-            <div className="text-xs text-muted-foreground">Research Focus</div>
+            <div className="text-xs text-muted-foreground whitespace-nowrap">Research Focus</div>
           </div>
         </div>
       </div>
